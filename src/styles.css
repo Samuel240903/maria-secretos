@@ -386,6 +386,7 @@ fieldset { border: 0; min-width: 0; }
 .product-name a { text-decoration: none; }
 .product-name a::after { content: ''; position: absolute; inset: 0 0 auto 0; height: 0; }
 .product-card:hover .product-name a { text-decoration: underline; text-underline-offset: .25em; text-decoration-thickness: 1px; }
+.product-card-ref { font-size: .82rem; font-weight: 600; letter-spacing: .05em; color: var(--gold); text-transform: uppercase; margin-top: .15rem; }
 .product-material { font-size: .9rem; color: var(--ink-soft); }
 .price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; margin-top: .25rem; font-variant-numeric: tabular-nums; }
 .price-old { color: var(--ink-soft); font-size: .88em; }

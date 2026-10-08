@@ -58,6 +58,7 @@ export default function ProductCard({ product }) {
       </div>
       <div className="product-meta">
         <h3 className="product-name"><Link to={`/pieza/${product.id}`}>{product.name}</Link></h3>
+        {product.ref && <span className="product-card-ref">{product.ref}</span>}
         <p className="product-material">{specLine(product)}</p>
         <Price product={product} />
       </div>

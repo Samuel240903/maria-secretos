@@ -190,7 +190,7 @@ export function hasPrices() {
 
 // Línea corta que acompaña el nombre en las tarjetas.
 export function specLine(p) {
-  if (p.kind === 'ring') return p.ref ? `${p.ref} • Con esmeralda` : 'Con esmeralda'
+  if (p.kind === 'ring') return 'Con esmeralda'
   const parts = [lengthLabel(p.length), `${n(p.grams)} g`]
-  return `${p.ref} • Oro 18k, ${parts.join(', ')}`
+  return `Oro 18k, ${parts.join(', ')}`
 }
