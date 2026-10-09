@@ -10,6 +10,7 @@ const CATEGORY_COVER = {
   cadenas: 'cadena-doble-cubano-2-46mm-45cm',
   'con-dije': 'cadena-mini-franco-con-corazones-abrazados-40-45cm',
   anillos: 'anillo-gota',
+  topos: 'topos-unspoken-4mm-plata',
 }
 
 const LINK_COVER = {

@@ -9,7 +9,7 @@ import { useStore } from '../store/StoreContext.jsx'
 
 function relatedFor(product) {
   const others = PRODUCTS.filter((p) => p.id !== product.id && !p.soldOut)
-  if (product.kind === 'ring') return others.filter((p) => p.kind === 'ring').slice(0, 4)
+  if (product.kind !== 'chain') return others.filter((p) => p.kind === product.kind).slice(0, 4)
   // primero el mismo eslabón en otros largos o grosores, luego la misma categoría
   const sameLink = others.filter((p) => p.link === product.link)
   const sameCat = others.filter((p) => p.category === product.category && p.link !== product.link)
@@ -74,7 +74,7 @@ export default function Product() {
             {product.ref && <p className="product-ref">{product.ref}</p>}
             <h1 className="page-title page-title--product">{product.name}</h1>
             <p className="product-material">
-              {product.kind === 'ring' ? 'Anillo con esmeralda' : 'Oro amarillo 18k italiano'}
+              {product.kind === 'chain' ? 'Oro amarillo 18k italiano' : product.material ? `${product.material} con esmeralda natural` : 'Anillo con esmeralda'}
             </p>
             <Price product={product} className="price--detail" />
             <p className="product-description">{product.description}</p>
@@ -168,7 +168,7 @@ export default function Product() {
         <section className="section section--sand" aria-labelledby="relacionadas">
           <div className="wrap">
             <h2 id="relacionadas" className="section-title">
-              {product.kind === 'ring' ? 'Otros anillos con esmeralda' : `Más cadenas ${product.link ? 'parecidas' : ''}`.trim()}
+              {product.kind === 'ring' ? 'Otros anillos con esmeralda' : product.kind === 'earring' ? 'Otros topos con esmeralda' : `Más cadenas ${product.link ? 'parecidas' : ''}`.trim()}
             </h2>
             <div className="product-grid product-grid--4">
               {related.map((p) => <ProductCard key={p.id} product={p} />)}

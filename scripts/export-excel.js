@@ -3,6 +3,13 @@ import fs from 'fs'
 import path from 'path'
 import { PRODUCTS, CATEGORIES, LINKS } from '../src/data/products.js'
 
+// Eslabón para cadenas, piedra para anillos y topos.
+function stoneOrLink(p) {
+  if (p.link) return LINKS[p.link]
+  if (p.kind === 'chain') return '-'
+  return p.material ? 'Esmeralda natural' : 'Esmeralda'
+}
+
 async function generateExcel() {
   const workbook = new ExcelJS.Workbook()
   workbook.creator = 'María Secretos'
@@ -24,8 +31,6 @@ async function generateExcel() {
     { header: 'Peso (g)', key: 'grams', width: 14 },
     { header: 'Precio (COP)', key: 'price', width: 18 },
     { header: 'Estado', key: 'status', width: 15 },
-    { header: 'Ruta de Imagen', key: 'image', width: 45 },
-    { header: 'Descripción Corta', key: 'description', width: 55 },
   ]
 
   // Estilo del encabezado
@@ -42,7 +47,7 @@ async function generateExcel() {
   PRODUCTS.forEach((p) => {
     const catObj = CATEGORIES.find((c) => c.id === p.category)
     const catName = catObj ? catObj.name : p.category
-    const linkName = p.link ? LINKS[p.link] : (p.kind === 'ring' ? 'Esmeralda' : '-')
+    const linkName = stoneOrLink(p)
     const lengthStr = p.length ? (p.length.includes('-') ? `${p.length} cm` : `${p.length} cm`) : '-'
     const mmVal = p.mm != null ? p.mm : '-'
     const gramsVal = p.grams != null ? p.grams : '-'
@@ -59,8 +64,6 @@ async function generateExcel() {
       grams: gramsVal,
       price: priceVal,
       status: statusVal,
-      image: p.image,
-      description: p.description,
     })
 
     row.alignment = { vertical: 'middle', horizontal: 'left' }
@@ -140,7 +143,7 @@ async function generateExcel() {
   const csvRows = PRODUCTS.map((p) => {
     const catObj = CATEGORIES.find((c) => c.id === p.category)
     const catName = catObj ? catObj.name : p.category
-    const linkName = p.link ? LINKS[p.link] : (p.kind === 'ring' ? 'Esmeralda' : '-')
+    const linkName = stoneOrLink(p)
     return [
       `"${p.ref}"`,
       `"${catName}"`,

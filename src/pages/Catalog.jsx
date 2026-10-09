@@ -36,11 +36,13 @@ const GROUPS = [
   { key: 'estado', title: 'Disponibilidad', options: [['disponible', 'Disponible']], test: (p) => !p.soldOut },
 ]
 
+const KIND_WORDS = { ring: 'anillo esmeralda', earring: 'topos aretes esmeralda', chain: 'cadena oro 18k' }
+
 const normalize = (s) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
 function matchesQuery(p, q) {
   const hay = normalize(
-    [p.name, p.description, p.ref, p.charm, LINKS[p.link], CATEGORIES.find((c) => c.id === p.category)?.name, p.kind === 'ring' ? 'anillo esmeralda' : 'cadena oro 18k']
+    [p.name, p.description, p.ref, p.charm, LINKS[p.link], CATEGORIES.find((c) => c.id === p.category)?.name, p.material, KIND_WORDS[p.kind]]
       .filter(Boolean).join(' '),
   )
   return normalize(q).split(/\s+/).filter(Boolean).every((w) => hay.includes(w.length > 3 ? w.replace(/(es|s)$/, '') : w))

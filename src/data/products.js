@@ -15,6 +15,7 @@ export const CATEGORIES = [
   { id: 'cadenas', name: 'Cadenas', note: 'Oro amarillo 18k italiano, de 40 a 70 cm' },
   { id: 'con-dije', name: 'Cadenas con dije', note: 'Corazones, tréboles, bolas y serpiente' },
   { id: 'anillos', name: 'Anillos con esmeralda', note: 'Esmeraldas en monturas delicadas' },
+  { id: 'topos', name: 'Topos con esmeralda', note: 'Plata 925 con esmeralda natural' },
 ]
 
 // Tipos de eslabón, en el orden en que aparecen en los filtros.
@@ -105,6 +106,35 @@ function ring(id, ref, name, image, description, extra = {}) {
   }
 }
 
+// Anillo en plata 925 con esmeralda natural. Cada pieza viene en una sola
+// talla, por eso no se pide elegirla.
+function silverRing(id, ref, name, size, image, description, extra = {}) {
+  return ring(id, ref, `Anillo ${name} plata 925, talla ${size}`, image, description, {
+    material: 'Plata 925',
+    size,
+    details: [['Referencia', ref], ['Material', 'Plata 925'], ['Piedra', 'Esmeralda natural'], ['Talla', size]],
+    ...extra,
+  })
+}
+
+function earrings(id, ref, name, mm, image, description, extra = {}) {
+  return {
+    id,
+    kind: 'earring',
+    ref,
+    name: `Topos ${name} ${mm} mm plata 925`,
+    category: 'topos',
+    material: 'Plata 925',
+    mm,
+    image,
+    price: null,
+    soldOut: false,
+    description,
+    details: [['Referencia', ref], ['Material', 'Plata 925'], ['Piedra', 'Esmeralda natural'], ['Tamaño', `${mm} mm`]],
+    ...extra,
+  }
+}
+
 export const PRODUCTS = [
   // Anillos con esmeralda (Ref. AN-01 a AN-12)
   ring('anillo-esmeralda-ovalada', 'Ref. AN-01', 'Anillo esmeralda ovalada', '/fotos/anillos/anillo-ovalado.jpg',
@@ -131,6 +161,58 @@ export const PRODUCTS = [
     'Esmeralda acompañada de una piedra blanca sobre un aro delgado.'),
   ring('anillo-ref-08', 'Ref. AN-12', 'Anillo trenzado', '/fotos/anillos/anillo-ref-08.jpg',
     'Esmeralda en seis garras sobre un aro trenzado con piedras blancas.', { fit: 'contain' }),
+
+  // Anillos en plata 925 con esmeralda natural, una talla por pieza (Ref. AN-13 a AN-34)
+  silverRing('anillo-aura-plata-t6-5', 'Ref. AN-13', 'Aura', '6,5', '/fotos/anillos/anillo-aura-plata-t6-5.jpg',
+    'Esmeralda natural redonda en cuatro garras, con piedras blancas a lo largo del aro. Plata 925.'),
+  silverRing('anillo-aura-plata-t7-5', 'Ref. AN-14', 'Aura', '7,5', '/fotos/anillos/anillo-aura-plata-t7-5.jpg',
+    'Esmeralda natural redonda en cuatro garras, con piedras blancas a lo largo del aro. Plata 925.'),
+  silverRing('anillo-encantado-plata-t7', 'Ref. AN-15', 'Encantado', '7', '/fotos/anillos/anillo-encantado-plata-t7.jpg',
+    'Esmeralda natural redonda entre dos piedras blancas en bisel, con brillo en el aro. Plata 925.'),
+  silverRing('anillo-radiante-plata-t5-5', 'Ref. AN-16', 'Radiante', '5,5', '/fotos/anillos/anillo-radiante-plata-t5-5.jpg',
+    'Esmeralda natural redonda en corona de garras, con piedras blancas en bisel sobre el aro. Plata 925.', { featured: true }),
+  silverRing('anillo-8-petalos-plata-t5', 'Ref. AN-17', '8 pétalos', '5', '/fotos/anillos/anillo-8-petalos-plata-t5.jpg',
+    'Esmeralda natural al centro de una flor de ocho pétalos de piedras blancas. Plata 925.'),
+  silverRing('anillo-8-petalos-plata-t6', 'Ref. AN-18', '8 pétalos', '6', '/fotos/anillos/anillo-8-petalos-plata-t6.jpg',
+    'Esmeralda natural al centro de una flor de ocho pétalos de piedras blancas. Plata 925.'),
+  silverRing('anillo-8-petalos-plata-t7', 'Ref. AN-19', '8 pétalos', '7', '/fotos/anillos/anillo-8-petalos-plata-t7.jpg',
+    'Esmeralda natural al centro de una flor de ocho pétalos de piedras blancas. Plata 925.'),
+  silverRing('anillo-8-petalos-plata-t8', 'Ref. AN-20', '8 pétalos', '8', '/fotos/anillos/anillo-8-petalos-plata-t8.jpg',
+    'Esmeralda natural al centro de una flor de ocho pétalos de piedras blancas. Plata 925.'),
+  silverRing('anillo-doble-linea-plata-t6', 'Ref. AN-21', 'Doble línea', '6', '/fotos/anillos/anillo-doble-linea-plata-t6.jpg',
+    'Esmeralda natural redonda sobre un aro que se abre en dos líneas, una lisa y otra con piedras blancas. Plata 925.'),
+  silverRing('anillo-doble-linea-plata-t6-5', 'Ref. AN-22', 'Doble línea', '6,5', '/fotos/anillos/anillo-doble-linea-plata-t6-5.jpg',
+    'Esmeralda natural redonda sobre un aro que se abre en dos líneas, una lisa y otra con piedras blancas. Plata 925.'),
+  silverRing('anillo-doble-linea-plata-t7', 'Ref. AN-23', 'Doble línea', '7', '/fotos/anillos/anillo-doble-linea-plata-t7.jpg',
+    'Esmeralda natural redonda sobre un aro que se abre en dos líneas, una lisa y otra con piedras blancas. Plata 925.'),
+  silverRing('anillo-floral-plata-t5-5', 'Ref. AN-24', 'Floral', '5,5', '/fotos/anillos/anillo-floral-plata-t5-5.jpg',
+    'Esmeralda natural redonda en cuatro garras, con piedras blancas en forma de flor a cada lado. Plata 925.'),
+  silverRing('anillo-floral-plata-t6-5', 'Ref. AN-25', 'Floral', '6,5', '/fotos/anillos/anillo-floral-plata-t6-5.jpg',
+    'Esmeralda natural redonda en cuatro garras, con piedras blancas en forma de flor a cada lado. Plata 925.'),
+  silverRing('anillo-infinito-plata-t6', 'Ref. AN-26', 'Infinito', '6', '/fotos/anillos/anillo-infinito-plata-t6.jpg',
+    'Símbolo de infinito con piedras blancas y una esmeralda natural al centro. Plata 925.'),
+  silverRing('anillo-coralina-plata-t6', 'Ref. AN-27', 'Coralina', '6', '/fotos/anillos/anillo-coralina-plata-t6.jpg',
+    'Esmeralda natural redonda entre dos grupos de piedras blancas, sobre un aro delgado. Plata 925.'),
+  silverRing('anillo-coralina-plata-t7', 'Ref. AN-28', 'Coralina', '7', '/fotos/anillos/anillo-coralina-plata-t7.jpg',
+    'Esmeralda natural redonda entre dos grupos de piedras blancas, sobre un aro delgado. Plata 925.'),
+  silverRing('anillo-flor-5-petalos-plata-t6', 'Ref. AN-29', 'Flor 5 pétalos', '6', '/fotos/anillos/anillo-flor-5-petalos-plata-t6.jpg',
+    'Esmeralda natural redonda dentro de una flor de cinco pétalos con piedras blancas. Plata 925.'),
+  silverRing('anillo-flor-tres-petalos-plata-t6', 'Ref. AN-30', 'Flor tres pétalos', '6', '/fotos/anillos/anillo-flor-tres-petalos-plata-t6.jpg',
+    'Esmeralda natural redonda abrazada por tres pétalos con piedras blancas. Plata 925.'),
+  silverRing('anillo-corazon-plata-t6-5', 'Ref. AN-31', 'Corazón', '6,5', '/fotos/anillos/anillo-corazon-plata-t6-5.jpg',
+    'Esmeralda natural dentro de un corazón de piedras blancas, con piedras también en el aro. Plata 925.', { featured: true }),
+  silverRing('anillo-corazon-plata-t7', 'Ref. AN-32', 'Corazón', '7', '/fotos/anillos/anillo-corazon-plata-t7.jpg',
+    'Esmeralda natural dentro de un corazón de piedras blancas, con piedras también en el aro. Plata 925.'),
+  silverRing('anillo-gota-plata-t7', 'Ref. AN-33', 'Gota', '7', '/fotos/anillos/anillo-gota-plata-t7.jpg',
+    'Esmeralda natural en corte gota, rodeada por un halo de piedras blancas. Plata 925.', { featured: true }),
+  silverRing('anillo-tailandes-plata-t7', 'Ref. AN-34', 'Tailandés', '7', '/fotos/anillos/anillo-tailandes-plata-t7.jpg',
+    'Esmeralda natural ovalada en cuatro garras, sobre un medio halo de piedras blancas. Plata 925.'),
+
+  // Topos en plata 925 con esmeralda natural (Ref. TOP-01 y TOP-02)
+  earrings('topos-chispa-2mm-plata', 'Ref. TOP-01', 'Chispa', 2, '/fotos/topos/topos-chispa-2mm-plata.jpg',
+    'Topos pequeños con una esmeralda natural de 2 mm en garras, con cierre de rosca. Plata 925.'),
+  earrings('topos-unspoken-4mm-plata', 'Ref. TOP-02', 'Unspoken', 4, '/fotos/topos/topos-unspoken-4mm-plata.jpg',
+    'Topos con esmeralda natural de 4 mm rodeada por un borde de piedras blancas. Plata 925.', { featured: true }),
 
   // Cadenas y cadenas con dije, oro amarillo 18k italiano
   chain("cadena-cajon-1-9mm-45cm", "Ref. CAD-01", "Cajón", 'cadenas', 'cajon', 1.9, '45', 1.02, "/fotos/cadenas/cadena-cajon-1-9mm-45cm.jpg"),
@@ -181,7 +263,7 @@ export function getProduct(id) {
 }
 
 export function needsSize(product) {
-  return product.kind === 'ring'
+  return product.kind === 'ring' && !product.size
 }
 
 export function hasPrices() {
@@ -190,7 +272,8 @@ export function hasPrices() {
 
 // Línea corta que acompaña el nombre en las tarjetas.
 export function specLine(p) {
-  if (p.kind === 'ring') return 'Con esmeralda'
+  if (p.kind === 'earring') return 'Plata 925, esmeralda natural'
+  if (p.kind === 'ring') return p.size ? `Plata 925, talla ${p.size}` : 'Con esmeralda'
   const parts = [lengthLabel(p.length), `${n(p.grams)} g`]
   return `Oro 18k, ${parts.join(', ')}`
 }

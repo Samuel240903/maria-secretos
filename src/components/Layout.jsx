@@ -168,6 +168,7 @@ function Header() {
             <Link className="nav-item" to="/catalogo?categoria=cadenas">Cadenas</Link>
             <Link className="nav-item" to="/catalogo?categoria=con-dije">Cadenas con dije</Link>
             <Link className="nav-item" to="/catalogo?categoria=anillos">Anillos con esmeralda</Link>
+            <Link className="nav-item" to="/catalogo?categoria=topos">Topos con esmeralda</Link>
             <Link className="nav-item" to="/#historia">Nuestra historia</Link>
             {BRAND.stores.length > 0 && <Link className="nav-item" to="/#tiendas">Tiendas</Link>}
             <Link className="nav-item" to="/ayuda">Ayuda</Link>
